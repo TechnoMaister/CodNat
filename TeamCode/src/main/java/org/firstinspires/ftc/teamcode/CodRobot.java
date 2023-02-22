@@ -53,23 +53,23 @@ public class CodRobot extends OpMode {
 
         //if(gheara()==1){
         if (gamepad2.y)
-            pozitie = 8500;
+            pozitie = 3800;
         else if (gamepad2.b)
-            pozitie = 6000;
+            pozitie = 2750;
         else if (gamepad2.a)
-            pozitie = 3750;
+            pozitie = 1600;
         else if (gamepad2.right_trigger != 0)
-            pozitie = 300;
+            pozitie = 50;
             //}
         else if(gamepad2.x) {
             pozitie = 0;
             deschidereGheara();
         }
 
-        if(motorKatanaStanga.getCurrentPosition()<8000 && motorKatanaDreapta.getCurrentPosition()<8000 && gamepad2.right_trigger!=0)
-            pozitie=pozitie+500;
-        else if(gamepad2.left_trigger!=0 && motorKatanaStanga.getCurrentPosition()>3500 && motorKatanaDreapta.getCurrentPosition()>3500)
-            pozitie=pozitie-500;
+        if(motorKatanaStanga.getCurrentPosition()<3800 && motorKatanaDreapta.getCurrentPosition()<3800 && gamepad2.right_trigger!=0)
+            pozitie=pozitie+200;
+        else if(gamepad2.left_trigger!=0 && motorKatanaStanga.getCurrentPosition()>1600 && motorKatanaDreapta.getCurrentPosition()>1600)
+            pozitie=pozitie-200;
 
         encoder(motorKatanaDreapta, pozitie, 2000);
         encoder(motorKatanaStanga, pozitie, 2000);
