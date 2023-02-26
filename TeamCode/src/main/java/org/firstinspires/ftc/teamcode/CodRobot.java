@@ -3,12 +3,14 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -16,10 +18,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 @TeleOp(name="CodRobot")
 public class CodRobot extends OpMode {
 
-    private DcMotor frontLeft  = null;
-    private DcMotor frontRight = null;
-    private DcMotor backLeft   = null;
-    private DcMotor backRight  = null;
+    private DcMotorEx frontLeft  = null;
+    private DcMotorEx frontRight = null;
+    private DcMotorEx backLeft   = null;
+    private DcMotorEx backRight  = null;
 
     private DcMotorEx motorKatanaDreapta = null;
     private DcMotorEx motorKatanaStanga = null;
@@ -31,21 +33,15 @@ public class CodRobot extends OpMode {
     private DistanceSensor sensorRange;
     int pozitie;
 
-    //NormalizedColorSensor senzorLinie;
-
     @Override
     public void init() {
-
         hardwareMap();
-
     }
 
     @Override
     public void loop() {
-
         miscare();
         executare();
-
     }
 
 
@@ -53,23 +49,22 @@ public class CodRobot extends OpMode {
 
         //if(gheara()==1){
         if (gamepad2.y)
-            pozitie = 3800;
+            pozitie = 4000;
         else if (gamepad2.b)
-            pozitie = 2750;
+            pozitie = 2900;
         else if (gamepad2.a)
-            pozitie = 1600;
-        else if (gamepad2.right_trigger != 0)
-            pozitie = 50;
-            //}
+            pozitie = 1800;
+        //else if (gamepad2.right_trigger != 0)
+            //pozitie = 50;
         else if(gamepad2.x) {
             pozitie = 0;
-            deschidereGheara();
+            //deschidereGheara();
         }
 
-        if(motorKatanaStanga.getCurrentPosition()<3800 && motorKatanaDreapta.getCurrentPosition()<3800 && gamepad2.right_trigger!=0)
-            pozitie=pozitie+200;
+        if(motorKatanaStanga.getCurrentPosition()<4000 && motorKatanaDreapta.getCurrentPosition()<4000 && gamepad2.right_trigger!=0)
+            pozitie=pozitie+70;
         else if(gamepad2.left_trigger!=0 && motorKatanaStanga.getCurrentPosition()>1600 && motorKatanaDreapta.getCurrentPosition()>1600)
-            pozitie=pozitie-200;
+            pozitie=pozitie-70;
 
         encoder(motorKatanaDreapta, pozitie, 2000);
         encoder(motorKatanaStanga, pozitie, 2000);
@@ -89,10 +84,14 @@ public class CodRobot extends OpMode {
                 gamepad2.dpad_up)
             inchidereGheara();
 
-        telemetry.addData("TarghetKatana",pozitie);
+        telemetry.addData("vitezafatadreapta",frontRight.getVelocity());
+        telemetry.addData("vitezafatastanga",frontLeft.getVelocity());
+        telemetry.addData("vitezaspatedreapta",backRight.getVelocity());
+        telemetry.addData("vitezaspatestanga",backLeft.getVelocity());
+        /*telemetry.addData("TarghetKatana",pozitie);
         telemetry.addData("range", sensorRange.getDistance(DistanceUnit.CM));
         telemetry.addData("Pozitie dreapta",motorKatanaDreapta.getCurrentPosition());
-        telemetry.addData("Pozitie stanga",motorKatanaStanga.getCurrentPosition());
+        telemetry.addData("Pozitie stanga",motorKatanaStanga.getCurrentPosition());*/
         telemetry.update();
     }
 
@@ -136,14 +135,21 @@ public class CodRobot extends OpMode {
         frontRight.setPower(fl*fl*fl/viteza);
         backLeft.setPower(br*br*br/viteza);
         backRight.setPower(bl*bl*bl/viteza);
+
+        if (gamepad1.dpad_up) {
+            frontLeft.setPower(-1);
+            frontRight.setPower(-1);
+            backLeft.setPower(-1);
+            backRight.setPower(-1);
+        }
     }
 
     void hardwareMap(){
 
-        backLeft = hardwareMap.get(DcMotor.class, "bl");
-        frontLeft = hardwareMap.get(DcMotor.class,"fl");
-        frontRight = hardwareMap.get(DcMotor.class,"fr");
-        backRight = hardwareMap.get(DcMotor.class,"br");
+        backLeft = hardwareMap.get(DcMotorEx.class, "bl");
+        frontLeft = hardwareMap.get(DcMotorEx.class,"fl");
+        frontRight = hardwareMap.get(DcMotorEx.class,"fr");
+        backRight = hardwareMap.get(DcMotorEx.class,"br");
 
         motorKatanaDreapta  = hardwareMap.get(DcMotorEx.class, "motorKatanaDreapta");
         motorKatanaStanga  = hardwareMap.get(DcMotorEx.class, "motorKatanaStanga");
@@ -151,8 +157,6 @@ public class CodRobot extends OpMode {
 
         servoGhearaStanga = hardwareMap.get(Servo.class, "ghearaStanga");
         servoGhearaDreapta = hardwareMap.get(Servo.class, "ghearaDreapta");
-
-        //senzorLinie = hardwareMap.get(NormalizedColorSensor.class, "senzorCuloare");
 
         motorKatanaDreapta.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorKatanaStanga.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
