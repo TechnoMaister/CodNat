@@ -14,23 +14,32 @@ public class MeemMeepTest {
         MeepMeep meepMeep = new MeepMeep(700);
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
-                // Required: Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(42.62511518370712, 38.110287416570166, Math.toRadians(138.19991297468354), Math.toRadians(138.19991297468354), 15.75)
-                // Option: Set theme. Default = ColorSchemeRedDark()
                 .setColorScheme(new ColorSchemeRedDark())
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(35,-60 , 0))
                                 // inchideGheara();
                                 // ridica(2900);
 
-                                .back(30)
-                                .strafeLeft(56)
-                                .forward(7)
+                                .back(25)
+                                .strafeLeft(36)
+                                .forward(5)
                                 // deschideGheara();
-                                .back(7)
+                                .back(5)
                                 //ridica(600);
-                                .strafeLeft(22)
-                                .lineTo(new Vector2d(65, -12))
+                                .strafeLeft(12)
+                                //ridica(600);
+                                .lineTo(new Vector2d(60, -12))
+                                //inchideGheara();
+                                //ridica(2900);
+                                .lineTo(new Vector2d(10, -12))
+                                //motorColector.setPower(1);
+                                .strafeRight(12)
+                                .forward(5)
+                                //deschideGheara();
+                                .back(5)
+                                .strafeLeft(12)
+                                .forward(25)
                                 .build()
                 );
 
