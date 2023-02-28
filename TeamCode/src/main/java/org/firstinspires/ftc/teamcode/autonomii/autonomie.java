@@ -12,7 +12,6 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.sequencesegment.TrajectorySegment;
 
 @Config
-@Autonomous(name = "autonomie")
 public class autonomie extends LinearOpMode {
 
     @Override

@@ -180,7 +180,5 @@ public class CodRobot extends OpMode {
 
         sensorRange = hardwareMap.get(DistanceSensor.class, "dis");
         Rev2mDistanceSensor sensorTimeOfFlight = (Rev2mDistanceSensor)sensorRange;
-
-
     }
 }
