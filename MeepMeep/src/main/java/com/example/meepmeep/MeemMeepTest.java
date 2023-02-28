@@ -29,7 +29,7 @@ public class MeemMeepTest {
                                 //ridica(600);
                                 .strafeLeft(12)
                                 //ridica(600);
-                                .lineTo(new Vector2d(60, -12))
+                                .lineTo(new Vector2d(60, 12))
                                 //inchideGheara();
                                 //ridica(2900);
                                 .lineTo(new Vector2d(10, -12))

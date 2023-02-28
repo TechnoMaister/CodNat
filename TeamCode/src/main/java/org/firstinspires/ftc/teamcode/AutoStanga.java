@@ -138,134 +138,258 @@ public class AutoStanga extends LinearOpMode {
         }
 
         if(tagulDorit == null){
-            Drive(0.5,-40,40,40,-40);
         }else if(tagulDorit.id == stanga){
             inchideGheara();
-            sleep(1000);
 
-            ridica(8500);
+            ridica(2900);
+            sleep(50);
+
+            Drive(1,-30,-30,-30,-30);
 
             sleep(50);
 
-            Drive(0.5,33,33,33,33);
+            Drive(1,-56,56,56,-56);
 
             sleep(50);
 
-            Drive(0.3,-54,54,54,-54);
-
-            sleep(50);
-
-            Drive(0.3,9,9,9,9);
+            Drive(1,7,7,7,7);
 
             sleep(50);
 
             deschideGheara();
 
-            sleep(100);
-
-            Drive(0.3,-9,-9,-9,-9);
+            Drive(1,-7,-7,-7,-7);
 
             sleep(50);
 
-            ridica(0);
+            ridica(600);
 
             sleep(50);
 
-            Drive(0.3,16,-16,-16,16);
+            Turn(0);
 
             sleep(50);
 
-            Drive(0.3,-65,-65,-65,-65);
+            Drive(1,-22,22,22,-22);
 
             sleep(50);
 
-            ridica(0);
+            Drive(1,60,60,60,60);
+
+            sleep(50);
 
             while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
             }
+
+            Turn(0);
+
+            sleep(50);
+
+            Drive(0.3,7,7,7,7);
+
+            sleep(50);
+
+            inchideGheara();
+
+            sleep(1000);
+
+            ridica(2900);
+
+            sleep(1000);
+
+            Drive(1,-68,-68,-68,-68);
+
+            sleep(50);
+
+            motorColector.setPower(1);
+
+            Drive(1,22,-22,-22,22);
+
+            sleep(50);
+
+            Drive(1,9,9,9,9);
+
+            sleep(50);
+
+            deschideGheara();
+
+            Drive(1,-9,-9,-9,-9);
+
+            motorColector.setPower(0);
+
+            ridica(0);
+
+            Drive(1,-20,20,20,-20);
 
         }else if(tagulDorit.id == mijloc){
             inchideGheara();
-            sleep(1000);
 
-            ridica(8500);
+            ridica(2900);
             sleep(50);
 
-            Drive(0.5,33,33,33,33);
-
-            sleep(50);
-
-            Drive(0.3,-54,54,54,-54);
+            Drive(1,-30,-30,-30,-30);
 
             sleep(50);
 
-            Drive(0.3,9,9,9,9);
+            Drive(1,-56,56,56,-56);
+
+            sleep(50);
+
+            Drive(1,7,7,7,7);
 
             sleep(50);
 
             deschideGheara();
 
-            sleep(100);
-
-            Drive(0.3,-9,-9,-9,-9);
+            Drive(1,-7,-7,-7,-7);
 
             sleep(50);
 
-            ridica(0);
+            ridica(600);
 
             sleep(50);
 
-            Drive(0.3,16,-16,-16,16);
+            Turn(0);
 
             sleep(50);
 
-            Drive(0.3,-32,-32,-32,-32);
+            Drive(1,-22,22,22,-22);
 
             sleep(50);
 
-            ridica(0);
+            Drive(1,60,60,60,60);
+
+            sleep(50);
 
             while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
             }
+
+            Turn(0);
+
+            sleep(50);
+
+            Drive(0.3,7,7,7,7);
+
+            sleep(50);
+
+            inchideGheara();
+
+            sleep(1000);
+
+            ridica(2900);
+
+            sleep(1000);
+
+            Drive(1,-68,-68,-68,-68);
+
+            sleep(50);
+
+            motorColector.setPower(1);
+
+            Drive(1,22,-22,-22,22);
+
+            sleep(50);
+
+            Drive(1,9,9,9,9);
+
+            sleep(50);
+
+            deschideGheara();
+
+            Drive(1,-9,-9,-9,-9);
+
+            motorColector.setPower(0);
+
+            ridica(0);
+
+            Drive(1,-20,20,20,-20);
+
+            Drive(1,33,33,33,33);
 
         }else if(tagulDorit.id == dreapta){
             inchideGheara();
-            sleep(1000);
 
-            ridica(8500);
+            ridica(2900);
             sleep(50);
 
-            Drive(0.5,33,33,33,33);
-
-            sleep(50);
-
-            Drive(0.3,-54,54,54,-54);
+            Drive(1,-30,-30,-30,-30);
 
             sleep(50);
 
-            Drive(0.3,9,9,9,9);
+            Drive(1,-56,56,56,-56);
+
+            sleep(50);
+
+            Drive(1,7,7,7,7);
 
             sleep(50);
 
             deschideGheara();
 
-            sleep(50);
-
-            Drive(0.3,-9,-9,-9,-9);
+            Drive(1,-7,-7,-7,-7);
 
             sleep(50);
 
-            ridica(0);
+            ridica(600);
 
             sleep(50);
 
-            Drive(0.3,16,-16,-16,16);
+            Turn(0);
 
-            ridica(0);
+            sleep(50);
+
+            Drive(1,-22,22,22,-22);
+
+            sleep(50);
+
+            Drive(1,60,60,60,60);
+
+            sleep(50);
 
             while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
             }
 
+            Turn(0);
+
+            sleep(50);
+
+            Drive(0.3,7,7,7,7);
+
+            sleep(50);
+
+            inchideGheara();
+
+            sleep(1000);
+
+            ridica(2900);
+
+            sleep(1000);
+
+            Drive(1,-68,-68,-68,-68);
+
+            sleep(50);
+
+            motorColector.setPower(1);
+
+            Drive(1,22,-22,-22,22);
+
+            sleep(50);
+
+            Drive(1,9,9,9,9);
+
+            sleep(50);
+
+            deschideGheara();
+
+            Drive(1,-9,-9,-9,-9);
+
+            motorColector.setPower(0);
+
+            ridica(0);
+
+            Drive(1,-20,20,20,-20);
+
+            Drive(1,60,60,60,60);
         }
     }
 
@@ -436,7 +560,6 @@ public class AutoStanga extends LinearOpMode {
             frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
         }
     }
 
