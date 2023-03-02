@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -13,6 +15,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @TeleOp(name="CodRobot")
@@ -33,6 +38,8 @@ public class CodRobot extends OpMode {
     private DistanceSensor sensorRange;
     int pozitie;
 
+    private BNO055IMU imu;
+
     @Override
     public void init() {
         hardwareMap();
@@ -49,22 +56,30 @@ public class CodRobot extends OpMode {
 
         //if(gheara()==1){
         if (gamepad2.y)
-            pozitie = 4000;
+            pozitie = 4100;
         else if (gamepad2.b)
             pozitie = 2900;
         else if (gamepad2.a)
             pozitie = 1800;
-        //else if (gamepad2.right_trigger != 0)
-            //pozitie = 50;
         else if(gamepad2.x) {
             pozitie = 0;
-            //deschidereGheara();
+            deschidereGheara();
         }
 
-        if(motorKatanaStanga.getCurrentPosition()<4000 && motorKatanaDreapta.getCurrentPosition()<4000 && gamepad2.right_trigger!=0)
-            pozitie=pozitie+70;
-        else if(gamepad2.left_trigger!=0 && motorKatanaStanga.getCurrentPosition()>1600 && motorKatanaDreapta.getCurrentPosition()>1600)
-            pozitie=pozitie-70;
+        if(motorKatanaStanga.getCurrentPosition()<4000 && motorKatanaDreapta.getCurrentPosition()<4000
+                && gamepad2.right_trigger!=0 &&
+                (motorKatanaStanga.getCurrentPosition()-motorKatanaStanga.getTargetPosition()<10
+                        && motorKatanaDreapta.getCurrentPosition()-motorKatanaDreapta.getTargetPosition()>-10
+                        || motorKatanaStanga.getCurrentPosition()-motorKatanaStanga.getTargetPosition()<10 &&
+                        motorKatanaDreapta.getCurrentPosition()-motorKatanaDreapta.getTargetPosition()>-10))
+            pozitie=pozitie+250;
+        else if(gamepad2.left_trigger!=0 && motorKatanaStanga.getCurrentPosition()>300
+                && motorKatanaDreapta.getCurrentPosition()>300 &&
+                (motorKatanaStanga.getCurrentPosition()-motorKatanaStanga.getTargetPosition()<10 &&
+                        motorKatanaDreapta.getCurrentPosition()-motorKatanaDreapta.getTargetPosition()<10
+                        || motorKatanaStanga.getCurrentPosition()-motorKatanaStanga.getTargetPosition()>-10 &&
+                        motorKatanaDreapta.getCurrentPosition()-motorKatanaDreapta.getTargetPosition()>-10))
+            pozitie=pozitie-250;
 
         encoder(motorKatanaDreapta, pozitie, 2000);
         encoder(motorKatanaStanga, pozitie, 2000);
@@ -80,19 +95,9 @@ public class CodRobot extends OpMode {
         }else{
             motorColector.setPower(0);
         }
-        if(sensorRange.getDistance(DistanceUnit.CM)<10 && !motorKatanaDreapta.isBusy() && !motorKatanaStanga.isBusy() && motorKatanaDreapta.getCurrentPosition()<5 && motorKatanaStanga.getCurrentPosition()<5 && !
-                gamepad2.dpad_up)
-            inchidereGheara();
 
-        telemetry.addData("vitezafatadreapta",frontRight.getVelocity());
-        telemetry.addData("vitezafatastanga",frontLeft.getVelocity());
-        telemetry.addData("vitezaspatedreapta",backRight.getVelocity());
-        telemetry.addData("vitezaspatestanga",backLeft.getVelocity());
-        /*telemetry.addData("TarghetKatana",pozitie);
-        telemetry.addData("range", sensorRange.getDistance(DistanceUnit.CM));
-        telemetry.addData("Pozitie dreapta",motorKatanaDreapta.getCurrentPosition());
-        telemetry.addData("Pozitie stanga",motorKatanaStanga.getCurrentPosition());*/
-        telemetry.update();
+        if(sensorRange.getDistance(DistanceUnit.CM)<12 && !motorKatanaDreapta.isBusy() && !motorKatanaStanga.isBusy() && motorKatanaDreapta.getCurrentPosition()<5 && motorKatanaStanga.getCurrentPosition()<5 && !gamepad2.dpad_up)
+            inchidereGheara();
     }
 
     void encoder(DcMotorEx motor,int pozitie, int viteza){
@@ -104,7 +109,7 @@ public class CodRobot extends OpMode {
 
     void inchidereGheara(){
         servoGhearaStanga.setPosition(0);
-        servoGhearaDreapta.setPosition(0.4);
+        servoGhearaDreapta.setPosition(0.2);
     }
     void deschidereGheara(){
         servoGhearaStanga.setPosition(0.5);
@@ -137,11 +142,35 @@ public class CodRobot extends OpMode {
         backRight.setPower(bl*bl*bl/viteza);
 
         if (gamepad1.dpad_up) {
+            frontLeft.setPower(1);
+            frontRight.setPower(1);
+            backLeft.setPower(1);
+            backRight.setPower(1);
+        }else if (gamepad1.dpad_down) {
             frontLeft.setPower(-1);
             frontRight.setPower(-1);
             backLeft.setPower(-1);
             backRight.setPower(-1);
+        }else if (gamepad1.dpad_left) {
+            frontLeft.setPower(-1);
+            frontRight.setPower(1);
+            backLeft.setPower(1);
+            backRight.setPower(-1);
+        }else if (gamepad1.dpad_right) {
+            frontLeft.setPower(1);
+            frontRight.setPower(-1);
+            backLeft.setPower(-1);
+            backRight.setPower(1);
         }
+
+        if(gamepad1.y)
+            Turn(90);
+        else if(gamepad1.b)
+            Turn(0);
+        else if(gamepad1.a)
+            Turn(-90);
+        else if(gamepad1.x)
+            Turn(180);
     }
 
     void hardwareMap(){
@@ -180,5 +209,38 @@ public class CodRobot extends OpMode {
 
         sensorRange = hardwareMap.get(DistanceSensor.class, "dis");
         Rev2mDistanceSensor sensorTimeOfFlight = (Rev2mDistanceSensor)sensorRange;
+
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
+        parameters.loggingEnabled      = true;
+        parameters.loggingTag          = "IMU";
+        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        imu.initialize(parameters);
+    }
+    void Turn(double targetAngle){
+
+        TurnPIDController pid = new TurnPIDController(targetAngle, 0.1,0,0);
+
+        while(Math.abs(targetAngle - PozitiaActuala())>1){
+
+            double motorPower = pid.update(PozitiaActuala());
+
+            frontRight.setPower(-motorPower);
+            frontLeft.setPower(motorPower);
+            backRight.setPower(-motorPower);
+            backLeft.setPower(motorPower);
+        }
+
+        frontRight.setPower(0);
+        frontLeft.setPower(0);
+        backRight.setPower(0);
+        backLeft.setPower(0);
+    }
+    public double PozitiaActuala(){
+        return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
     }
 }

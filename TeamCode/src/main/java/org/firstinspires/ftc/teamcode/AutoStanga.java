@@ -71,7 +71,7 @@ public class AutoStanga extends LinearOpMode {
     {
         hardwareMap();
 
-        deschideGheara();
+        inchideGheara();
         /*
         if (senzorLinie instanceof SwitchableLight) {
             ((SwitchableLight)senzorLinie).enableLight(true);
@@ -139,257 +139,136 @@ public class AutoStanga extends LinearOpMode {
 
         if(tagulDorit == null){
         }else if(tagulDorit.id == stanga){
+
             inchideGheara();
 
-            ridica(2900);
+            ridica(4100);
             sleep(50);
 
-            Drive(1,-30,-30,-30,-30);
+            Drive(1,30,30,30,30);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
-            Drive(1,-56,56,56,-56);
+            Drive(0.5,-56,56,56,-56);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
-            Drive(1,7,7,7,7);
-
-            sleep(50);
+            Drive(0.5,7.3,7.3,7.3,7.3);
 
             deschideGheara();
 
-            Drive(1,-7,-7,-7,-7);
-
-            sleep(50);
-
-            ridica(600);
-
-            sleep(50);
+            Drive(0.5,-7.3,-7.3,-7.3,-7.3);
 
             Turn(0);
+            Turn(0);
 
-            sleep(50);
+            ridica(0);
 
-            Drive(1,-22,22,22,-22);
+            Drive(1,20,-20,-20,20);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
-            Drive(1,60,60,60,60);
+            Drive(1,-61,-61,-61,-61);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
             while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
             }
 
             Turn(0);
-
-            sleep(50);
-
-            Drive(0.3,7,7,7,7);
-
-            sleep(50);
-
-            inchideGheara();
-
-            sleep(1000);
-
-            ridica(2900);
-
-            sleep(1000);
-
-            Drive(1,-68,-68,-68,-68);
-
-            sleep(50);
-
-            motorColector.setPower(1);
-
-            Drive(1,22,-22,-22,22);
-
-            sleep(50);
-
-            Drive(1,9,9,9,9);
-
-            sleep(50);
-
-            deschideGheara();
-
-            Drive(1,-9,-9,-9,-9);
-
-            motorColector.setPower(0);
-
-            ridica(0);
-
-            Drive(1,-20,20,20,-20);
+            Turn(0);
 
         }else if(tagulDorit.id == mijloc){
+
             inchideGheara();
 
-            ridica(2900);
+            ridica(4100);
             sleep(50);
 
-            Drive(1,-30,-30,-30,-30);
+            Drive(1,30,30,30,30);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
-            Drive(1,-56,56,56,-56);
+            Drive(0.5,-56,56,56,-56);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
-            Drive(1,7,7,7,7);
-
-            sleep(50);
+            Drive(0.5,7.3,7.3,7.3,7.3);
 
             deschideGheara();
 
-            Drive(1,-7,-7,-7,-7);
-
-            sleep(50);
-
-            ridica(600);
-
-            sleep(50);
+            Drive(0.5,-7.3,-7.3,-7.3,-7.3);
 
             Turn(0);
+            Turn(0);
 
-            sleep(50);
+            ridica(0);
 
-            Drive(1,-22,22,22,-22);
+            Drive(1,20,-20,-20,20);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
-            Drive(1,60,60,60,60);
+            Drive(1,-28,-28,-28,-28);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
             while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
             }
 
             Turn(0);
-
-            sleep(50);
-
-            Drive(0.3,7,7,7,7);
-
-            sleep(50);
-
-            inchideGheara();
-
-            sleep(1000);
-
-            ridica(2900);
-
-            sleep(1000);
-
-            Drive(1,-68,-68,-68,-68);
-
-            sleep(50);
-
-            motorColector.setPower(1);
-
-            Drive(1,22,-22,-22,22);
-
-            sleep(50);
-
-            Drive(1,9,9,9,9);
-
-            sleep(50);
-
-            deschideGheara();
-
-            Drive(1,-9,-9,-9,-9);
-
-            motorColector.setPower(0);
-
-            ridica(0);
-
-            Drive(1,-20,20,20,-20);
-
-            Drive(1,33,33,33,33);
+            Turn(0);
 
         }else if(tagulDorit.id == dreapta){
+
             inchideGheara();
 
-            ridica(2900);
+            ridica(4100);
             sleep(50);
 
-            Drive(1,-30,-30,-30,-30);
+            Drive(1,30,30,30,30);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
-            Drive(1,-56,56,56,-56);
+            Drive(0.5,-56,56,56,-56);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
-            Drive(1,7,7,7,7);
-
-            sleep(50);
+            Drive(0.5,7.3,7.3,7.3,7.3);
 
             deschideGheara();
 
-            Drive(1,-7,-7,-7,-7);
-
-            sleep(50);
-
-            ridica(600);
-
-            sleep(50);
+            Drive(0.5,-7.3,-7.3,-7.3,-7.3);
 
             Turn(0);
+            Turn(0);
 
-            sleep(50);
+            ridica(0);
 
-            Drive(1,-22,22,22,-22);
+            Drive(1,20,-20,-20,20);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
-            Drive(1,60,60,60,60);
+            Drive(1,-1,-1,-1,-1);
 
-            sleep(50);
+            Turn(0);
+            Turn(0);
 
             while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
             }
 
             Turn(0);
-
-            sleep(50);
-
-            Drive(0.3,7,7,7,7);
-
-            sleep(50);
-
-            inchideGheara();
-
-            sleep(1000);
-
-            ridica(2900);
-
-            sleep(1000);
-
-            Drive(1,-68,-68,-68,-68);
-
-            sleep(50);
-
-            motorColector.setPower(1);
-
-            Drive(1,22,-22,-22,22);
-
-            sleep(50);
-
-            Drive(1,9,9,9,9);
-
-            sleep(50);
-
-            deschideGheara();
-
-            Drive(1,-9,-9,-9,-9);
-
-            motorColector.setPower(0);
-
-            ridica(0);
-
-            Drive(1,-20,20,20,-20);
-
-            Drive(1,60,60,60,60);
+            Turn(0);
         }
     }
 

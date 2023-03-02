@@ -63,6 +63,8 @@ public class AutoDreapta extends LinearOpMode {
     int mijloc = 15;
     int dreapta = 13;
 
+    int pozitie;
+
     AprilTagDetection tagulDorit = null;
 
 
@@ -71,7 +73,7 @@ public class AutoDreapta extends LinearOpMode {
     {
         hardwareMap();
 
-        deschideGheara();
+        inchideGheara();
         /*
         if (senzorLinie instanceof SwitchableLight) {
             ((SwitchableLight)senzorLinie).enableLight(true);
@@ -138,259 +140,109 @@ public class AutoDreapta extends LinearOpMode {
         }
 
         if(tagulDorit == null){
+
+            pozitie = 2;
+            telemetry.addLine("Doamne ajuta");
+            telemetry.update();
+
         }else if(tagulDorit.id == stanga){
-            inchideGheara();
 
-            ridica(2900);
-            sleep(50);
-
-            Drive(1,-30,-30,-30,-30);
-
-            sleep(50);
-
-            Drive(1,-56,56,56,-56);
-
-            sleep(50);
-
-            Drive(1,7,7,7,7);
-
-            sleep(50);
-
-            deschideGheara();
-
-            Drive(1,-7,-7,-7,-7);
-
-            sleep(50);
-
-            ridica(600);
-
-            sleep(50);
-
-            Turn(0);
-
-            sleep(50);
-
-            Drive(1,-22,22,22,-22);
-
-            sleep(50);
-
-            Drive(1,60,60,60,60);
-
-            sleep(50);
-
-            while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
-            }
-
-            Turn(0);
-
-            sleep(50);
-
-            Drive(0.3,7,7,7,7);
-
-            sleep(50);
-
-            inchideGheara();
-
-            sleep(1000);
-
-            ridica(2900);
-
-            sleep(1000);
-
-            Drive(1,-68,-68,-68,-68);
-
-            sleep(50);
-
-            motorColector.setPower(1);
-
-            Drive(1,22,-22,-22,22);
-
-            sleep(50);
-
-            Drive(1,9,9,9,9);
-
-            sleep(50);
-
-            deschideGheara();
-
-            Drive(1,-9,-9,-9,-9);
-
-            motorColector.setPower(0);
-
-            ridica(0);
-
-            Drive(1,-20,20,20,-20);
+            pozitie = 1;
 
         }else if(tagulDorit.id == mijloc){
-            inchideGheara();
 
-            ridica(2900);
-            sleep(50);
-
-            Drive(1,-30,-30,-30,-30);
-
-            sleep(50);
-
-            Drive(1,-56,56,56,-56);
-
-            sleep(50);
-
-            Drive(1,7,7,7,7);
-
-            sleep(50);
-
-            deschideGheara();
-
-            Drive(1,-7,-7,-7,-7);
-
-            sleep(50);
-
-            ridica(600);
-
-            sleep(50);
-
-            Turn(0);
-
-            sleep(50);
-
-            Drive(1,-22,22,22,-22);
-
-            sleep(50);
-
-            Drive(1,60,60,60,60);
-
-            sleep(50);
-
-            while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
-            }
-
-            Turn(0);
-
-            sleep(50);
-
-            Drive(0.3,7,7,7,7);
-
-            sleep(50);
-
-            inchideGheara();
-
-            sleep(1000);
-
-            ridica(2900);
-
-            sleep(1000);
-
-            Drive(1,-68,-68,-68,-68);
-
-            sleep(50);
-
-            motorColector.setPower(1);
-
-            Drive(1,22,-22,-22,22);
-
-            sleep(50);
-
-            Drive(1,9,9,9,9);
-
-            sleep(50);
-
-            deschideGheara();
-
-            Drive(1,-9,-9,-9,-9);
-
-            motorColector.setPower(0);
-
-            ridica(0);
-
-            Drive(1,-20,20,20,-20);
-
-            Drive(1,33,33,33,33);
+            pozitie = 2;
 
         }else if(tagulDorit.id == dreapta){
-            inchideGheara();
 
-            ridica(2900);
-            sleep(50);
-
-            Drive(1,-30,-30,-30,-30);
-
-            sleep(50);
-
-            Drive(1,-56,56,56,-56);
-
-            sleep(50);
-
-            Drive(1,7,7,7,7);
-
-            sleep(50);
-
-            deschideGheara();
-
-            Drive(1,-7,-7,-7,-7);
-
-            sleep(50);
-
-            ridica(600);
-
-            sleep(50);
-
-            Turn(0);
-
-            sleep(50);
-
-            Drive(1,-22,22,22,-22);
-
-            sleep(50);
-
-            Drive(1,60,60,60,60);
-
-            sleep(50);
-
-            while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
-            }
-
-            Turn(0);
-
-            sleep(50);
-
-            Drive(0.3,7,7,7,7);
-
-            sleep(50);
-
-            inchideGheara();
-
-            sleep(1000);
-
-            ridica(2900);
-
-            sleep(1000);
-
-            Drive(1,-68,-68,-68,-68);
-
-            sleep(50);
-
-            motorColector.setPower(1);
-
-            Drive(1,22,-22,-22,22);
-
-            sleep(50);
-
-            Drive(1,9,9,9,9);
-
-            sleep(50);
-
-            deschideGheara();
-
-            Drive(1,-9,-9,-9,-9);
-
-            motorColector.setPower(0);
-
-            ridica(0);
-
-            Drive(1,-20,20,20,-20);
-
-            Drive(1,60,60,60,60);
+            pozitie = 3;
         }
+
+        ridica(2900);
+
+        Drive(1,-30,-30,-30,-30);
+
+        Turn(0);
+        Turn(0);
+
+        Drive(1,-58,58,58,-58);
+
+        Turn(0);
+        Turn(0);
+
+        Drive(1,7,7,7,7);
+
+        deschideGheara();
+
+        Drive(1,-7,-7,-7,-7);
+
+        ridica(500);
+
+        Turn(0);
+        Turn(0);
+
+        Drive(1,-17,17,17,-17);
+
+        Turn(0);
+        Turn(0);
+
+        Drive(1,60,60,60,60);
+
+        while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
+        }
+
+        Turn(0);
+        Turn(0);
+
+        Drive(0.3,7,7,7,7);
+
+        inchideGheara();
+
+        ridica(2900);
+
+        sleep(500);
+
+        Drive(1,-65,-65,-65,-65);
+
+        Turn(0);
+        Turn(0);
+
+        Drive(1,20.5,-20.5,-20.5,20.5);
+
+        Turn(0);
+        Turn(0);
+
+        Drive(1,7,7,7,7);
+
+        deschideGheara();
+
+        Drive(1,-7,-7,-7,-7);
+
+        ridica(0);
+
+        Turn(0);
+        Turn(0);
+
+        Drive(1,20,-20,-20,20);
+
+        Turn(0);
+        Turn(0);
+
+        if(pozitie == 1){
+
+            Drive(1,2,2,2,2);
+
+        }else if(pozitie == 2){
+
+            Drive(1,32,32,32,32);
+
+        }else if(pozitie == 3){
+
+            Drive(1,62,62,62,62);
+        }
+
+        Turn(0);
+        Turn(0);
     }
 
     void mersCuGyro(int pozitie, double putere){
