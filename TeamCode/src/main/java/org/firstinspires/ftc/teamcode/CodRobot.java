@@ -107,7 +107,7 @@ public class CodRobot extends OpMode {
         motor.setVelocity(viteza);
     }
 
-    void inchidereGheara(){
+    void inchidereGheara(){//.
         servoGhearaStanga.setPosition(0);
         servoGhearaDreapta.setPosition(0.2);
     }
