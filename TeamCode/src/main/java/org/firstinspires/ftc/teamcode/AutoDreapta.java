@@ -176,48 +176,6 @@ public class AutoDreapta extends LinearOpMode {
 
         Drive(1,-7,-7,-7,-7);
 
-        ridica(500);
-
-        Turn(0);
-        Turn(0);
-
-        Drive(1,-17,17,17,-17);
-
-        Turn(0);
-        Turn(0);
-
-        Drive(1,60,60,60,60);
-
-        while(motorKatanaDreapta.isBusy() && motorKatanaStanga.isBusy() && opModeIsActive()){
-        }
-
-        Turn(0);
-        Turn(0);
-
-        Drive(0.3,7,7,7,7);
-
-        inchideGheara();
-
-        ridica(2900);
-
-        sleep(500);
-
-        Drive(1,-65,-65,-65,-65);
-
-        Turn(0);
-        Turn(0);
-
-        Drive(1,20.5,-20.5,-20.5,20.5);
-
-        Turn(0);
-        Turn(0);
-
-        Drive(1,7,7,7,7);
-
-        deschideGheara();
-
-        Drive(1,-7,-7,-7,-7);
-
         ridica(0);
 
         Turn(0);
@@ -243,6 +201,16 @@ public class AutoDreapta extends LinearOpMode {
 
         Turn(0);
         Turn(0);
+
+        while((motorKatanaDreapta.isBusy() || motorKatanaStanga.isBusy()) && opModeIsActive()){
+        }
+
+        while(opModeIsActive()){
+            telemetry.addLine("Sper ca a fost totul bine");
+            telemetry.addLine("Daca a esuat robotul macar suntem la nationala :))");
+            telemetry.addLine("Nu uita: Se putea si mai rau");
+            telemetry.update();
+        }
     }
 
     void mersCuGyro(int pozitie, double putere){

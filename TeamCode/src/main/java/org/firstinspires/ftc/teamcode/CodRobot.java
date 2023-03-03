@@ -113,9 +113,11 @@ public class CodRobot extends OpMode {
     }
     void deschidereGheara(){
         servoGhearaStanga.setPosition(0.5);
-        servoGhearaDreapta.setPosition(0);
-    }
-    int gheara(){
+        servoGhearaDreapta.setPosition(0.02
+        ,0000
+        00);
+    }0
+00    int gheara(){
         if(servoGhearaDreapta.getPosition()!=0 && servoGhearaStanga.getPosition()==0.5)
             return 1;
         else
